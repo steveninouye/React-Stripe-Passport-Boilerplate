@@ -17,7 +17,10 @@ class CheckoutForm extends Component {
         e.preventDefault();
         try {
             let token = await this.props.stripe.createToken({name: this.state.customerName });
-            await postCharge({ id: token.id, amount: 10 });
+            
+            // amount can be dynamic
+            // here amount is to automatically charge someone $10
+            await postCharge({ id: token.id, amount: 10 }); 
         } catch (e) {
             console.log(e);
         }
